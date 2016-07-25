@@ -1,0 +1,102 @@
+﻿@using ECommerce.data;
+@model ECommerce.Models.ProductViewModel
+<div class="container">
+    
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <p class="lead">LIT eCommerce</p>
+            <div class="list-group">
+                @foreach (Category c in Model.Categories)
+                {
+                    if (c.CategoryId == Model.product.CategoryId)
+                    {
+                        <a href="/home/index?categoryid=@c.CategoryId" data-categoryid="@c.CategoryId" class="list-group-item active">@c.CategoryName</a>
+                    }
+                    else
+                    {
+                        <a href="/home/index?categoryid=@c.CategoryId" data-categoryid="@c.CategoryId" class="list-group-item ">@c.CategoryName</a>
+                    }
+
+                }
+                
+                
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            @if (Model.product.Images.Any())
+            {
+                <div class="thumbnail">
+
+                    <img class="img-responsive" src="~/Images/@Model.product.Images.First().ImageName" alt="Product Image" />
+                </div>
+                <div class="row">
+                    @foreach (Image image in Model.product.Images)
+                    {
+                    <img class="thumbnail" src="~/Images/@image.ImageName" alt="Product Image" style="float:left;width:auto;height:150px;">
+
+                    }
+                </div>
+
+               
+
+            }
+            else
+            {
+                <img src="http://placehold.it/800x300" />
+            }
+           
+           
+                   
+
+
+               
+
+
+               
+                <div class="caption-full">
+                    <h4 class="pull-right">@Model.product.Price.ToString("C")</h4>
+                    <h4>
+                        <a href="#">@Model.product.ProductName</a>
+                    </h4>
+                    <p>@Model.product.ProductDescription</p>
+                   
+                   
+                    
+                </div>
+            
+
+        </div>
+        <div class="text-right" style="float:right;" >
+            <select style="width:50px;height:30px;" class="quantity">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+            <br />
+
+
+            <button id="btn-cart"style="margin-top:30px;"class="btn btn-danger"data-product-id="@Model.product.ProductId">Add To Cart</button>
+           
+        </div>
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+
+@section scripts
+{
+
+<script src="~/Scripts/addtocart.js"></script>
+}

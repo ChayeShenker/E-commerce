@@ -1,0 +1,65 @@
+﻿@using ECommerce.data;
+@model ECommerce.Models.CartViewModel
+
+<div class="container" >
+    @if(!Model.Items.Any())
+    {
+        <h1>Your cart is empty</h1>
+        <a href="/home/index">Go Shopping</a>
+    }
+    <ol>
+        @foreach (CartItem item in Model.Items)
+        {
+
+
+            <li class="product">
+                <figure>
+                    @if (item.Product.Images.Any())
+                    {
+                        <img class="img-responsive" src="~/Images/@item.Product.Images.First().ImageName" style="height:200px; width:150px;" alt="Product Image">
+                    }
+                    else
+                    {
+                        <img class="img-responsive" src="http://placehold.it/200x150" alt="">
+                    } 
+                </figure>
+                <div class="details">
+                    <h1 class="name">
+                        <a href="">@item.Product.ProductName</a>
+                    </h1>    
+
+                    <br />
+                    <label>Quantity</label>
+                   
+                    <select class="select" data-item-id="@item.ItemId" data-product-id="@item.ProductId"data-cart-id="@item.CartId"data-price="@item.Product.Price">
+                       @for (int i = 1; i <= 10; i++ )
+                       {
+                           if(i == item.Quantity)
+                           {
+                               <option selected>@i</option>
+                           }
+                           else
+                           {
+                               <option>@i</option>
+                           }
+                       }
+                    </select>
+                </div>
+                <span class="price ">@((item.Product.Price * item.Quantity).ToString("C"))</span>
+                <br />
+                <form action="/cart/delete"method="post">
+                    <input type="hidden" name="itemId"value="@item.ItemId"/>
+                    
+                    <button  class="btn">Remove</button>
+                </form>               
+
+                </li>
+
+        }
+               
+</ol>
+</div>
+@section scripts
+{
+<script src="~/Scripts/cart.js"></script>
+}

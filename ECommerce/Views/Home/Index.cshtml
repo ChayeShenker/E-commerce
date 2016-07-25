@@ -1,0 +1,85 @@
+﻿@using ECommerce.data;
+@model ECommerce.Models.IndexViewModel
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <p class="lead">Shop Name</p>
+            <div class="list-group">
+                
+                @foreach (Category c in Model.Categories)
+                {
+                    if (c.CategoryId == Model.Id)
+                    {
+                        <a href="/home/index?categoryid=@c.CategoryId" class="list-group-item active">@c.CategoryName</a>
+                    }
+                    else
+                    {
+                        <a href="/home/index?categoryid=@c.CategoryId" class="list-group-item">@c.CategoryName</a>
+                    }
+
+
+                }
+               
+               
+            </div>
+        </div>
+
+        <div class="col-md-9">
+
+            <div class="row carousel-holder">
+
+                <div class="col-md-12">
+
+
+                    <img src="https://www.freelogoservices.com/api/main/images/1j+ojVVCOMkX9Wyrexe4hGfV95Kb2UQQxUOYlW0+fGxL+Fkz0jt82q5wvKJ+aAZDuQ5Lw01RJd1j3XEvEpZJ1U5o...jqOOY5AX3522G9aDqhCTn0odxLRH...6fq087" height="100" width="300" />
+
+
+
+                </div>
+
+            </div>
+            @foreach(Product p in Model.Products)
+            { 
+
+            <div class="row">
+
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail">
+                       
+                        @if (p.Images.Any())
+                        {
+                            <img src="~/Images/@p.Images.First().ImageName" />
+                        }
+                        else
+                        {
+                            <img src="http://placehold.it/320x150" alt="">
+                        }
+                           
+                        
+                        <div class="caption">
+                            <h4 class="pull-right"> @p.Price.ToString("C")</h4>
+                            <h4>
+                                <a href="/home/product?productid=@p.ProductId">@p.ProductName</a>
+                            </h4>
+
+                           
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
