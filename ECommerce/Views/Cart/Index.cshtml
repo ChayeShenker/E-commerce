@@ -16,7 +16,8 @@
                 <figure>
                     @if (item.Product.Images.Any())
                     {
-                        <img class="img-responsive" src="~/Images/@item.Product.Images.First().ImageName" style="height:200px; width:150px;" alt="Product Image">
+                        <img class="img-responsive" src="~/Images/@item.Product.Images.First().ImageName" style="height:200px; width:auto;margin-top:30px;" alt="Product Image">
+                        
                     }
                     else
                     {
