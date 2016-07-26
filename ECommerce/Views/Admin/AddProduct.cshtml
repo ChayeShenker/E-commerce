@@ -18,17 +18,20 @@
             <label for="descrition">Description</label>
             <textarea id="description" class="form-control" name="productdescription"></textarea>
             <label for="image">Select Image(s)</label>
-
-            <input type="file" class="form-control" name="images[0]" />
-            <input type="file" class="form-control" name="images[1]" />
-            <input type="file" class="form-control" name="images[2]" />
+            <div class="images">
+                <input type="file" class="form-control" name="images[0]" />
+            </div>
+                @*<a href="#"id="add-image"class="btn">Upload More</a>*@
+                      
+    @*<input type="file" class="form-control" name="images[1]" />
+            <input type="file" class="form-control" name="images[2]" />*@
 
          
             <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button>
         </div>
     </form>
 </div>
-@section Scripts
+@*@section Scripts
 {
-
-}
+<script src="~/Scripts/uplaodImage.js"></script>
+}*@
