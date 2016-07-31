@@ -86,7 +86,8 @@ namespace ECommerce.Controllers
                 ProductId = item.ProductId,
                 CartId = item.CartId,
                 ItemId = item.ItemId,
-                Quantity = item.Quantity
+                Quantity = item.Quantity,
+            
             };
             return Json(jsonItem, JsonRequestBehavior.AllowGet);
             

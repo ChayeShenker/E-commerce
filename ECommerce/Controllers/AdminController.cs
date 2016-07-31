@@ -54,17 +54,17 @@ namespace ECommerce.Controllers
         }
         [HttpPost]
         [Authorize]
-        public ActionResult AddProduct(HttpPostedFileBase [] images, Product p)
+       public ActionResult AddProduct(HttpPostedFileBase[] pictures, Product p)
         {
             
             AdministratorRepository repo = new AdministratorRepository(Properties.Settings.Default.ConStr);
             repo.AddProduct(p);
-            foreach(HttpPostedFileBase i in images)
+            foreach (HttpPostedFileBase pic in pictures)
             {
-                if(i != null)
+                if(pic != null)
                 {
-                    var fileName = Guid.NewGuid() + Path.GetExtension(i.FileName);
-                    i.SaveAs(Server.MapPath("~/Images/") + fileName);
+                    var fileName = Guid.NewGuid() + Path.GetExtension(pic.FileName);
+                    pic.SaveAs(Server.MapPath("~/Images/") + fileName);
                     Image image = new Image();
                     image.ImageName = fileName;
                     image.ProductId = p.ProductId;
